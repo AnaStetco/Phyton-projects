@@ -1,10 +1,3 @@
-.for inserting value into a table the command is insert into emp1 values:
-insert into emp1 value(;ana;,1986-12-23,6);
-integer for storing integer values
-float for values with decimal
-char : to store a string
-double: more 
-date : to store date in yyyy-mm-dd   2020-09-01
 
 create tables:
 syntax:  create table table_name ( variables name , data type)
@@ -23,37 +16,6 @@ select * from emp where sex='m';s
 scalar computation :select ename,ecode,gross,gross*10/100 from emp;
 a
 ---------------------------------------------
-Relational operatore : >,<,=,>=,<=,!=
-Logical Operatore: OR    ||
-                   AND   &&
-                   NOT    !  
-
-List out all managers residing in delhi
-list all sup whose sal is greater than 15000
-list all sup whose sal is greater than 15000 and they are residing in gzb
-AMIT
-MANISH
-RAJ
-
-AFTER SORTING
-
-
-AMIT
-ANA
-MANISH
-RAJ
-VIPIN
-
-ASCENDING ORDER
-
-
-name
-father_name
-bs
-location
-
-anand swaroop gupta
-
 
 ORDER BY COLUMN NAME
 
@@ -109,16 +71,7 @@ we can create our own functions using "stored procedures"
    select count(*) from emp1;
    select count(*) from emp1 where bs> 8000; 
 -----------------------------------------------------------
-1) mod() it returns remainder e,g mod(15,6)
-stddev() function returns standard deviation of a group of observations
 
-
-ana	8900	3090	9548100
-amit	6700	890	792100
-vipin	4550	-1260	1587600
-romit	3400	-2410	5808100
-swarna	5500	-310	96100
-	5810	sum	17832000
 
 powepower(4,3), it returns 64
 for finding square root 
