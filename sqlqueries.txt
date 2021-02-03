@@ -1,0 +1,585 @@
+.for inserting value into a table the command is insert into emp1 values:
+insert into emp1 value(;ana;,1986-12-23,6);
+integer for storing integer values
+float for values with decimal
+char : to store a string
+double: more 
+date : to store date in yyyy-mm-dd   2020-09-01
+
+create tables:
+syntax:  create table table_name ( variables name , data type)
+
+e.g
+
+create table emp (ecode integer, ename char(20) ,sex char(1), grade char(2), gross integer);
+
+for INSERTING VALUES
+-----------------------
+
+insert into emp values(10,'ana','f','a',56000);
+select * from emp;(will show all records from table)
+
+select * from emp where sex='m';s
+scalar computation :select ename,ecode,gross,gross*10/100 from emp;
+a
+---------------------------------------------
+Relational operatore : >,<,=,>=,<=,!=
+Logical Operatore: OR    ||
+                   AND   &&
+                   NOT    !  
+
+List out all managers residing in delhi
+list all sup whose sal is greater than 15000
+list all sup whose sal is greater than 15000 and they are residing in gzb
+AMIT
+MANISH
+RAJ
+
+AFTER SORTING
+
+
+AMIT
+ANA
+MANISH
+RAJ
+VIPIN
+
+ASCENDING ORDER
+
+
+name
+father_name
+bs
+location
+
+anand swaroop gupta
+
+
+ORDER BY COLUMN NAME
+
+select * from emp123 order by name => THIS SORTS TABLE ON THE NAME
+
+SORTING ON TWO ATTRIBUTES
+
+select * from emp123 order by name, father_name ;
+
+select * from emp123 order by name, father_name desc ;
+this sorts on the same name  with father name as in descending
+--------------------------------------------------------------
+1) char() => it gives a charcter corresponding to ascii value (integer) supplied
+   ASCII  E.G 'A' = ASCII VAL 65
+              'B' = 66
+              'a' = 97
+2) concat() : this is used to join two strings
+
+  select (ename ,location) :=> JOINING ename and location
+  you can join even more than 2 strings togethar
+  select concat(name ," ",bs) from emp1 where bs> 7000;
+
+3) lower() :=> converts every string in lower case
+   select lower("MR LONDON"); => mrlondon   
+4) upper():=> converts every string to upper case
+5) substr(string,m,n)
+   substr('anaana',4,3);    
+   if provide only 2 arguments say substr('anaileana',4)
+   it will display : ileana
+6)ltrim() : it trims all the blanks that are appearing on the left side of a string 
+  select ltrim("   anaileana");  
+7) rtrim() :it trims all the blanks that are appearing on the right side of a string 
+  select rtrim("   anaileana");  
+8) length(string)
+   select length('anaileana')
+9) instr(str1,str2);
+   select instr('anaileana', 'ean');
+
+diclogesic
+
+AGGREGATE FUNCTIONS
+---------------------
+1) max() : maximum of group of tuples/ rows
+   select max(bs) from emp1; => it will give max of basic sal
+   select max(bs) from emp1 where location ="delhi"; 
+2) min()
+3) avg() : this gives you average of the specified colums 
+   select avg(bs) from emp1;
+these are inbuilt functions 
+we can create our own functions using "stored procedures"
+
+4) count(*) :=> it returns counts of the rows matching a condition
+   select count(*) from emp1;
+   select count(*) from emp1 where bs> 8000; 
+-----------------------------------------------------------
+1) mod() it returns remainder e,g mod(15,6)
+stddev() function returns standard deviation of a group of observations
+
+
+ana	8900	3090	9548100
+amit	6700	890	792100
+vipin	4550	-1260	1587600
+romit	3400	-2410	5808100
+swarna	5500	-310	96100
+	5810	sum	17832000
+
+powepower(4,3), it returns 64
+for finding square root 
+
+round(nuber,n2)
+round(15.94,1)=  15.9
+sign()
+1) if argument n<0 ,it returns -1 
+   if argument n=0 , it returns 0
+   if argument n>0 , it returns +1
+EID EMPNAME    DEPT   SAL
+1   AMIT       HR     10000
+2   VIPIN      MKT    20000
+3   ANA        HR     30000  
+4   JOHN       MKT    30000
+5   BARSHA     IT     50000
+6   SWARNA     TEST   NULL 
+
+1) find min sal
+2) find no of rows
+3) find the count of salaries excluding NULL
+   select count(sal) from ana23;
+4) count of all distinc sal 
+   select count(distinct(sal)) from ama23;
+5) find sum of all salaries.
+6) sum of all distinct salaries
+   select sum(distinct(sal)) from ana23;
+7) find average salary. 
+   average sal= sum(sal)/count(sal)
+   select sum(sal)/count(sal);
+   1) TRUNCATE()
+SELECT TRUNCATE(485.67455559995,4)select => result 485.6745
+
+select truncate(485.87,-1) => result 480
+select truncate(564.45,-2)=>  result 500
+
+2) curdate() => returns current date
+   select curdate()+15
+   returns date after 15 days
+3) date() it extracts date datetime expression
+   date('2020-09-22 11:45:37') => 2020-09-22
+4) month() => for extracting month from the date
+   select month('2020-09-22')=> 09
+5) select year('2020-09-22')=> 2020
+6) dayname() => gives you the name of the day
+7) dayofmonth()=> returns day of the date specified
+    
+8) dayofweek()=> sun =1,mon=2,tue=3
+9)dayofyear()=> returns the no of days (0 to  365)
+10) now() => returns actual time of execution
+11) sysdate()=> returns current time
+
+
+DISTINCT() :=> it returns non repetetive values of the attribute
+               specified
+------------------------------------------------------------
+
+group by function : it is grouping the tuples on the basis of the specified
+                    attribute(s)
+   suppose we wish to group the table ana23 on the dept
+    
+   AMIT    HR  10000
+   ANA     HR  30000
+   BARSHA  IT  50000
+   VIPIN   MKT 20000
+   JOHN    MKT 30000
+   SWARNA  TEST NULL  
+
+ this group by function is primarily used with aggrigate functions like
+ sum(),min(),max(),avg()
+
+suppose i wish to find summation of salaries dept wise
+---------------------------------
+i wish to display all orders along with part description
+
+
+select o.orderon,o.name,o.partno, 
+ from orders o , parts p
+where o.partno = p.partno;
+
+------------------------------------------------------
+i wish to display the   orders which were placed for  partno 49 along 
+with part description 
+
+select o.oderno,o.name,o.partno,p.description from orders o,parts p 
+where o.partno=p.partno && o.partno=49;
+---------------------------------------------
+
+all orders of ram2gb
+select o.oderon,o.partno,p.decsription from order os,parts p 
+where o.partno=p.partno&& p.description='ram2gb';
+
+JOINING OF  TWO TABLES
+
+t1 and t2
+join t1 and t2
+
+t1 desc
+
+rowno,tableno char(15)
+
+t1
+
+row1 table1
+row2 table1
+row3 table1
+row4 table1
+row5 table1
+row6 table1
+
+t2
+
+row1 table2
+row2 table2
+row3 table2
+row4 table2
+row5 table2 
+row6 table2
+
+THIS JOIN IS CALEED AS CROSS JOIN
+We can call it as Cartesian Join  or Cartesian product
+
+alias of table names
+order o1
+parts p
+customer c
+---------------------------------------
+SUBQUERY
+
+SELECT * FROM  TABLE1 WHERE 
+TABLE1.COLUMNn = SELECT(SELECT COLUMNm from TABLE2 WHERE 
+COLUMN m= SOMEVALUE)
+
+note: subquery must return only 1 rows
+
+subquery executes before the main query
+
+1) name of the employee whose basic salary is minimum.
+2) name those whose bs is more then average basic sal.
+select name,bs from emp1 where bs>(select abg(bs) from emp1;
+
+3) find the sum of those employee's salary whose basic salary is less
+   than the average 
+select sum(bs) from emp1 where bs<(seelct avg(bs) from emp1);
+SUBQUERY
+
+SELECT * FROM  TABLE1 WHERE 
+TABLE1.COLUMNn = SELECT(SELECT COLUMNm from TABLE2 WHERE 
+COLUMN m= SOMEVALUE)
+
+note: subquery must return only 1 rows
+
+subquery executes before the main query
+
+1) name of the employee whose basic salary is minimum.
+2) name those whose bs is more then average basic sal.
+select name,bs from emp1 where bs>(select abg(bs) from emp1;
+
+3) find the sum of those employee's salary whose basic salary is less
+   than the average 
+select sum(bs) from emp1 where bs<(select avg(bs) from emp1);
+
+
+we are wiring a subquery for a particular value that has to be matched in main query
+
+//select * from emp1 where empcode=(select name,location from emp2 where bs>5000);
+
+select * from emp1 where empcode=(select name,empcode from emp1 where empcode=8);
+
+condition : subquery MUST 1 row
+
+q) display all those items which have price more than the average price in parts table;
+q1) display all those items from table parts which have price more than 
+    the average price in parts1 table;
+select * from parts where price >(select avg(price ) from parts 1);
+
+q2) display name of  the customer who could place the single  order of maximum value 
+
+we have to find max of val (o.quantity*p.price)=
+
+select o.name,o.quantity *p.price as'oder value' from orders o,parts p 
+where o.quantity*p.price=(select max(o.quantity*p.price) from oders o,parts p);
+select max(q*P)
+
+q3) find ttal order value of skautomation
+select sum(o.quantity*p.price) as 'total order value' from orders o,parts p where o.name='skautomation';
+
+  I) create view debts as select * from bills;
+to see 
+   select * from debts;
+
+VIEWS OF SELECTED ROWS
+
+CREATE VIEW CREDIT_DEBTS AS SELECT * FROM DEBTS WHERE ACCOUNTD_ID=4;
+
+CREATING VIEWS OF SELECTED COLUMNS
+
+CREATE VIEW V1 (COMP NAME, MAILING ADDRESS) AS SELECT NAME,ADDRESS FROM COMPANY;
+
+JOINING BILLS TABLE WIH BANK_ACCOUNTS
+
+
+COMPANY NAME, AMOUNT TO BE PAID, NAME OF BANK
+
+create a view with the name bills_due displaying the name(name of the company),
+amount,balance,bank
+
+create view bills_due(comp_name,amount,balance,bank_name) as select b.name,
+b.amount,a.balance,a.bank from bills b,bank_accounts a where b.account_id=a.account_id;
+
+update bank_accounts so that balance in american bank set to 700
+
+
+q) now list all those banks where balance is less than the billing amount
+
+1) Create a view to send mails to company e.g electricity co, 125 north street
+ create view mail as concat(name," ",address) from company;
+2) table that contain name of class teacher , name of student , fath name
+
+concat(name , "  " , "fat name")
+
+3)create a view where subscriber has to make a late payment
+  that is 10 % more than the billing amount
+  NAME , LATE FEE , TOTAL AMOUNT TO PAY, TYPE
+create view latepayment(name,late_fee,total_amount,type) as select b.name,
+b.amount *10/100 as 'latefee',b.amount+b.amount*10/100,a.type from bills b,
+bank_accounts a where b.account_id=a.account_id;
+
+3) total LATE fee credited in current account;
+delete from  latepayment where late fee <20 
+
+NOTE: if the view is being created by joining 2 or more tables , we cannot perform
+      delete operation for deleting the rows
+
+create view where amount is displayed in usd
+1 usd = 72 inr
+create view amount_usd(amount_inr) as select amount/72 from bills;
+
+--------------------------------------------------------------------
+
+import mysql.connector as sqlcon
+mycon1=sqlcon.connect(host="localhost",user="root",password="root123",
+                database="ana1")
+
+if mycon1.is_connected():
+    print("connection succesful")
+else:
+    print("connection unsuccesful")
+cursor1=mycon1.cursor()
+str1="select * from bank_accounts "
+cursor1.execute(str1)
+data=cursor1.fetchall()
+for i in data:
+    id,type,bal,name=i
+    if(bal>10000):
+        print(i)
+    
+---------------------------------------------
+CONNECTION PYTHON WITH MYSQL
+i) Import Package
+ii) Create connection object
+iii) Create cursor instance
+iv) Execute Sql
+v) Extract data from result set
+----------------------------------------------------
+i) import mysql.connector  as sqlcon
+ii) which is connection your python program with backend databases
+    a) password : root password - root123
+    b) root is admin : user is root
+    c) host = "localhost" if our backend databases are on some different pc , we have to provide   	the network address of that backend.
+    d) name of database
+    mycon = sqlcon.connect(host="localhost",user="root",password="root123",database="anaileana")
+   THIS IS CONNECTION OBJECT
+   IT will be connection our python program with database anaileana
+
+FOR TESTING :
+-----------------
+ mycon.is_connected()
+if mycon.is_connected():
+      print(" connection successful")
+else :
+       print(" could not connect")
+
+iii) Creation of cursor instance
+      Cursor instance is a control structure , it gives you the access to the records returned by sql query
+      cursor= mycon.cursor() => it meanse cursor instance with the name cursor is created
+   
+
+iv) EXECUTING QUERY(sql query)
+    str10=    "select * from emp"
+   cursor.execute(str10)
+v) EXRACTING DATA FROM THE RESULTSET
+     data = cursor.fetchall()
+     all records are stored into a temporary memory buffer
+v) for i in data:
+        print(i)
+ ------------------------------------------
+import mysql.connector as sqlcon
+mycon=sqlcon.connect(host="localhost",user="root",password="root123",database="ana1")
+if mycon.is_connected():
+    print("connection succesfull")
+else:
+    print("connection unsuccesfull")
+cursor=mycon.cursor()
+for i in range(0,3):
+    name=input("what the name")
+    location=input("whats your location")
+    age=int(input("what your age?"))
+    data=(name,location,age)
+    str10=("insert into vipin1 values(%s,%s,%s )")
+    cursor.execute(str10,data)
+mycon.commit()   
+
+-------------------------------------------------
+import mysql.connector as sqlcon
+mycon=sqlcon.connect(host="localhost",user="root",password="root123",database="ana1")
+if mycon.is_connected():
+    print("connection succesfull")
+else:
+    print("connection unsuccesfull")
+cursor=mycon.cursor()
+str11="select * from vipin1 where age >30 && location in ('delhi')"
+cursor.execute(str11)
+data=cursor.fetchall()
+for i in data:
+    print(i)
+-----------------------------------------------
+import mysql.connector as sqlcon
+mycon=sqlcon.connect(host="localhost",user="root",password="root123",database="ana1")
+if mycon.is_connected():
+    print("connection succesfull")
+else:
+    print("connection unsuccesfull")
+cursor=mycon.cursor()
+str11="select * from vipin1 "
+cursor.execute(str11)
+data=cursor.fetchall()
+for i in data:
+    name,location,age=i
+    if(age>30) and (location=='calcutta'):
+        
+        print(i)
+=========================================
+import mysql.connector as sqlcon
+mycon=sqlcon.connect(host="localhost",user="root",password="root123",database="anaileana")
+if mycon.is_connected():
+    print("connection succesfull")
+else:
+    print("connection unsuccesfull")
+cursor=mycon.cursor()
+str11="select * from emp1 "
+cursor.execute(str11)
+data=cursor.fetchall()
+sum=0
+for i in data:
+    name,empcode,desig,bs,dep,location,doj,rob=i
+    print(i)
+    if(location=='jaipur'):
+        
+        sum=sum+bs
+print("this is sum",sum)
+----------------------------------------------
+import mysql.connector as sqlcon
+mycon=sqlcon.connect(host="localhost",user="root",password="root123",database="anaileana")
+if mycon.is_connected():
+    print("connection succesfull")
+else:
+    print("connection unsuccesfull")
+cursor=mycon.cursor()
+str11="select sum(bs) from emp1 where location in('jaipur') "
+cursor.execute(str11)
+data=cursor.fetchall()
+for i in data:
+    print(i)
+IF NULL VALUE IN THE TABLE,QUERIES IS NOT GOING TO WORK IF U WANT TO ADD UP NUMBERS
+
+import mysql.connector as sqlcon
+mycon1=sqlcon.connect(host="localhost",user="root",password="root123",database="ana1")
+if mycon1.is_connected():
+    print("connection is succesful")
+else:
+    print("connection unsuccesful")
+
+userchoice=0
+print(" ENTER 1 IF WISH TO CREATE NEW TABLE")
+print(" ENTER 2 IF WISH TO INSERT VALUES ")
+userchoice=int(input("please enter option"))
+cursor1=mycon1.cursor()
+if(userchoice==1):
+    
+    str1="create table student(rollno integer,name char(25),phy integer,math integer,grade char(25),project char(25))"
+    cursor1.execute(str1)
+if(userchoice==2):
+    #r,n,maths,grade,project
+    r=int(input("please enter rollno"))
+    n=input("please enetr name")
+    phy=int(input("please enter marks for phy"))
+    maths=int(input("please enter marks for maths"))
+    grade=input("please enter grade")
+    project=input("please enter project")
+    str2="insert into student(rollno,name,phy,math,grade,project) values({},'{}',{},{},'{}','{}').format(111,'ana',99,100,'A','submitted')"
+
+    #str2="insert into student(rollno,name,phy,math,grade,project) values({},'{}',{},{},'{}','{}').format(r,n,maths,grade,project)"
+    cursor1.execute(str2)
+
+
+---------------------------------------------------------------------
+import mysql.connector as sqlcon
+mycon1=sqlcon.connect(host="localhost",user="root",password="root123",database="ana1")
+if mycon1.is_connected():
+    print("connection is succesful")
+else:
+    print("connection unsuccesful")
+
+userchoice=0
+print(" ENTER 1 IF WISH TO CREATE NEW TABLE")
+print(" ENTER 2 IF WISH TO INSERT VALUES ")
+userchoice=int(input("please enter option"))
+cursor1=mycon1.cursor()
+if(userchoice==1):
+    
+    str1="create table student7(rollno integer,name char(25),phy integer,math integer,grade char(25),project char(25))"
+    cursor1.execute(str1)
+if(userchoice==2):
+    #r,n,maths,grade,project
+    r=int(input("please enter rollno"))
+    n=input("please enetr name")
+    phy=int(input("please enter marks for phy"))
+    maths=int(input("please enter marks for maths"))
+    grade=input("please enter grade")
+    project=input("please enter project")
+    #str2="insert into student7(rollno,name,phy,math,grade,project) values({},'{}',{},{},'{}','{}')".format(111,'ana',99,100,'A','submitted')
+
+    str2="insert into student(rollno,name,phy,math,grade,project) values({},'{}',{},{},'{}','{}').format(r,n,maths,grade,project)"
+
+    #FORMAT IS A FUNCTION WHICH IS APPLIED ON A STRING
+    cursor1.execute(str2)
+    mycon1.commit()
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
